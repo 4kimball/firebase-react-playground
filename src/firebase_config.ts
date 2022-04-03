@@ -11,7 +11,7 @@ const firebaseConfig = {
   databaseURL: process.env.REACT_APP_DATABASE_URL, // real time db
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 export const database = firebase.database();
 export const firebaseInstance = firebase;
 export const authService = firebase.auth();
