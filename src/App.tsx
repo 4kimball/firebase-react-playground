@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import WriteComponent from "./views/Write";
+import ReadComponent from "./views/Read";
+import "./App.css";
+import { firebaseInstance, authService } from "./firebase_config";
 
 function App() {
+  const onClickGoogle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const provider = new firebaseInstance.auth.GoogleAuthProvider();
+    const response = await authService.signInWithPopup(provider);
+    console.log(response);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button name="google" onClick={onClickGoogle}>
+        구글 계정으로 로그인
+      </button>
+      <WriteComponent />
+      <ReadComponent />
     </div>
   );
 }
